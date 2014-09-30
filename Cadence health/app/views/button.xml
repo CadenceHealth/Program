@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Alloy>
+    <Window id="win1" class="doge" backgroundColor="white">
+        <!-- The title property can also be defined as node text. -->
+        
+    </Window>
+</Alloy>
