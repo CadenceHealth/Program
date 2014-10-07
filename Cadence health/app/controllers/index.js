@@ -1,5 +1,5 @@
 function doClick(e) {
-    var button = Alloy.createController('button').getView();
+    var tag = Alloy.createController('tag').getView();
     Titanium.Media.showCamera({
 	success:function(event) {
 		// called when media returned from the camera
@@ -10,8 +10,10 @@ function doClick(e) {
 				height:Ti.UI.SIZE,
 				image:event.media
 			});
-			button.add(imageView);
-			button.open();
+			newImage = imageView.toImage();
+			var file = Titanium.Filesystem.getFile(Titanium.Filesystem.tempDirectory, "pendingImage.jpg");
+			file.write(newImage);
+			tag.open();
 		} else {
 			alert("got the wrong type back ="+event.mediaType);
 		}
@@ -29,7 +31,7 @@ function doClick(e) {
 		}
 		a.show();
 	},
-	saveToPhotoGallery:true,
+	saveToPhotoGallery:false,
 });
 	//button.open();
 }
