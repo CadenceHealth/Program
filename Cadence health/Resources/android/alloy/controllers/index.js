@@ -9,7 +9,6 @@ function __processArg(obj, key) {
 
 function Controller() {
     function doClick() {
-        var tag = Alloy.createController("tag").getView();
         Titanium.Media.showCamera({
             success: function(event) {
                 Ti.API.debug("Our type was: " + event.mediaType);
@@ -19,7 +18,13 @@ function Controller() {
                         height: Ti.UI.SIZE,
                         image: event.media
                     });
-                    tag.add(imageView);
+                    newImage = imageView.toImage();
+                    var file = Titanium.Filesystem.createTempFile();
+                    file.write(newImage);
+                    var arg = {
+                        link: file.nativePath
+                    };
+                    var tag = Alloy.createController("tag", arg).getView();
                     tag.open();
                 } else alert("got the wrong type back =" + event.mediaType);
             },
@@ -28,7 +33,7 @@ function Controller() {
                 var a = Titanium.UI.createAlertDialog({
                     title: "Camera"
                 });
-                error.code == Titanium.Media.NO_CAMERA ? a.setMessage("Please run this test on device") : a.setMessage("Unexpected error: " + error.code);
+                a.setMessage(error.code == Titanium.Media.NO_CAMERA ? "Please run this test on device" : "Unexpected error: " + error.code);
                 a.show();
             },
             saveToPhotoGallery: false
@@ -37,9 +42,15 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};

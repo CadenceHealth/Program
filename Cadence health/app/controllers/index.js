@@ -1,5 +1,4 @@
 function doClick(e) {
-    var tag = Alloy.createController('tag').getView();
     Titanium.Media.showCamera({
 	success:function(event) {
 		// called when media returned from the camera
@@ -10,9 +9,19 @@ function doClick(e) {
 				height:Ti.UI.SIZE,
 				image:event.media
 			});
+			
+			//save image to temp 
 			newImage = imageView.toImage();
-			var file = Titanium.Filesystem.getFile(Titanium.Filesystem.tempDirectory, "pendingImage.jpg");
+			var file = Titanium.Filesystem.createTempFile();
 			file.write(newImage);
+			
+			//pass image location to Tag
+			var arg = {
+				link : file.nativePath			
+				};
+			
+			//create controller and pass image location
+			var tag = Alloy.createController('tag',arg).getView();
 			tag.open();
 		} else {
 			alert("got the wrong type back ="+event.mediaType);

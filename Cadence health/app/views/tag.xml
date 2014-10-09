@@ -2,6 +2,6 @@
 <Alloy>
     <Window id="win1" class="tag" backgroundColor="white">
         <!-- The title property can also be defined as node text. -->
-        <ImageView image = imgPath> </ImageView>
+        <ImageView id = "upload"> </ImageView>
     </Window>
 </Alloy>

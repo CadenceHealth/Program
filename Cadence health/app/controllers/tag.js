@@ -1,6 +1,3 @@
-var imgPath=getImage();
-
-function getImage(){
-	var path = Titanium.Filesystem.getTempDirectory;
-	return path + "/pendingImage.jpg";
-}
+var args = arguments[0] || {};
+console.log(args);
+$.upload.image = args.link;
