@@ -1,6 +1,0 @@
-<Alloy>
-    <Window id="win" class="container" backgroundColor="white">
-        <!-- The title property can also be defined as node text. -->
-        	<Button id = 'testbutton' onClick = 'doClick' class = 'but' title = 'Snap & Tag' top="10" left = "10" width="100" height="200"/>
-    </Window>
-</Alloy>
