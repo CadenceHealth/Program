@@ -1,0 +1,11 @@
+<Alloy>
+	<!-- Main Window -->
+	<Window id="navigation" class="container">
+		<!-- header -->
+        <View class="container">
+	        <Button id = "CaptureButton" onClick = 'navigateCapture' class = "button" title = 'Snap & Tag'/>
+		    <Button id = "SearchButton" onClick = 'navigateSearch' class = "button" title = 'Search Meals'/>
+		    <Button id = "SavedButton" onClick = 'navigateSaved' class = "button" title = 'Saved Meals'/>
+		</View>
+	</Window>
+</Alloy>
