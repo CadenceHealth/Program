@@ -1,5 +1,0 @@
-<Alloy>
-    <Window class='win' backgroundColor="white">
-    	<ImageView id="image"></ImageView>
-    </Window>
-</Alloy>
